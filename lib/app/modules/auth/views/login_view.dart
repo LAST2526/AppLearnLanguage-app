@@ -9,6 +9,7 @@ import 'package:last02/app/data/models/auth/login/login_email_request.dart';
 import 'package:last02/app/modules/auth/controllers/login_controller.dart';
 import 'package:last02/app/modules/auth/widgets/btn_widget.dart';
 import 'package:last02/app/modules/auth/widgets/button_style.dart';
+import 'package:last02/app/modules/auth/widgets/language_dropdown.dart';
 
 class LoginView extends BaseView<LoginController> {
   @override
@@ -36,7 +37,7 @@ class LoginView extends BaseView<LoginController> {
                     const SizedBox(height: 10),
                     Center(
                       child: Image.asset(
-                        ImageAssets.logoLogin,
+                        ImageAssets.logoLoginImg,
                         height: getSize(160),
                         fit: BoxFit.contain,
                       ),
@@ -45,7 +46,7 @@ class LoginView extends BaseView<LoginController> {
                     Text(
                       appLocalization.loginButton,
                       style: TextStyle(
-                        color: AppColors.greenAuthScreenColor,
+                        color: AppColors.grammaPrimaryText,
                         fontSize: getFontSize(22),
                         fontWeight: FontWeight.bold,
                       ),
@@ -55,9 +56,9 @@ class LoginView extends BaseView<LoginController> {
                     const SizedBox(height: 24),
                     ElevatedButton.icon(
                       onPressed: () {
-                        // controller.loginWithGoogle(forceChooseAccount: true)
+                        controller.loginWithGoogle(forceChooseAccount: true);
                       },
-                      icon: SvgPicture.asset('images/ic_google.svg',
+                      icon: SvgPicture.asset(ImageAssets.logoGoogleImg,
                           width: getSize(24),
                           height: getSize(24),
                           fit: BoxFit.contain),
@@ -152,7 +153,7 @@ class LoginView extends BaseView<LoginController> {
                           appLocalization.forgotPassword,
                           style: TextStyle(
                             fontSize: getFontSize(14),
-                            color: AppColors.greenAuthScreenColor,
+                            color: AppColors.grammaPrimaryText,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -188,7 +189,7 @@ class LoginView extends BaseView<LoginController> {
                             child: Text(
                               appLocalization.registerButton,
                               style: TextStyle(
-                                color: AppColors.greenAuthScreenColor,
+                                color: AppColors.grammaPrimaryText,
                                 fontWeight: FontWeight.bold,
                                 fontSize: getFontSize(16),
                               ),
@@ -202,11 +203,15 @@ class LoginView extends BaseView<LoginController> {
                 ),
               ),
             ),
-            // const Positioned(
-            //   top: 60,
-            //   right: 10,
-            //   child: LanguageDropdown(),
-            // ),
+            Positioned(
+              top: 60,
+              right: 10,
+              child: LanguageDropdown(
+                controller: controller,
+                buttonWidth: size.width * 0.6,
+                dropdownWidth: size.width * 0.45,
+              ),
+            ),
           ],
         ),
       ),

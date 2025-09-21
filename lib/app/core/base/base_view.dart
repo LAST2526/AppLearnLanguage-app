@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:last02/app/core/models/page_state.dart';
 import 'package:last02/app/core/values/app_colors.dart';
 import 'package:last02/app/core/widget/loading.dart';
+import 'package:last02/l10n/app_localizations.dart';
 import 'package:logger/logger.dart';
 
 import '/app/core/base/base_controller.dart';

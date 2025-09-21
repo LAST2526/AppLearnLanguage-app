@@ -1,3 +1,4 @@
+import 'package:last02/app/core/utils/image_assets.dart';
 import 'package:last02/app/core/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +37,7 @@ class CustomResultDialog extends StatelessWidget {
                 topRight: Radius.circular(8),
               ),
               child: Image.asset(
-                'images/top_bg_forgotpassword.png',
+                isSuccess ? ImageAssets.success : ImageAssets.error,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 18,

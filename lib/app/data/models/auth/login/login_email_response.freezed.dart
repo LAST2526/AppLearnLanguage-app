@@ -235,7 +235,7 @@ mixin _$LoginEmailData {
   String get refreshToken => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get mail => throw _privateConstructorUsedError;
-  bool get isExisting => throw _privateConstructorUsedError;
+  bool get isExist => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -254,7 +254,7 @@ abstract class $LoginEmailDataCopyWith<$Res> {
       String refreshToken,
       String userName,
       String mail,
-      bool isExisting});
+      bool isExist});
 }
 
 /// @nodoc
@@ -274,7 +274,7 @@ class _$LoginEmailDataCopyWithImpl<$Res, $Val extends LoginEmailData>
     Object? refreshToken = null,
     Object? userName = null,
     Object? mail = null,
-    Object? isExisting = null,
+    Object? isExist = null,
   }) {
     return _then(_value.copyWith(
       accessToken: null == accessToken
@@ -293,9 +293,9 @@ class _$LoginEmailDataCopyWithImpl<$Res, $Val extends LoginEmailData>
           ? _value.mail
           : mail // ignore: cast_nullable_to_non_nullable
               as String,
-      isExisting: null == isExisting
-          ? _value.isExisting
-          : isExisting // ignore: cast_nullable_to_non_nullable
+      isExist: null == isExist
+          ? _value.isExist
+          : isExist // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -314,7 +314,7 @@ abstract class _$$LoginEmailDataImplCopyWith<$Res>
       String refreshToken,
       String userName,
       String mail,
-      bool isExisting});
+      bool isExist});
 }
 
 /// @nodoc
@@ -332,7 +332,7 @@ class __$$LoginEmailDataImplCopyWithImpl<$Res>
     Object? refreshToken = null,
     Object? userName = null,
     Object? mail = null,
-    Object? isExisting = null,
+    Object? isExist = null,
   }) {
     return _then(_$LoginEmailDataImpl(
       accessToken: null == accessToken
@@ -351,9 +351,9 @@ class __$$LoginEmailDataImplCopyWithImpl<$Res>
           ? _value.mail
           : mail // ignore: cast_nullable_to_non_nullable
               as String,
-      isExisting: null == isExisting
-          ? _value.isExisting
-          : isExisting // ignore: cast_nullable_to_non_nullable
+      isExist: null == isExist
+          ? _value.isExist
+          : isExist // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -367,7 +367,7 @@ class _$LoginEmailDataImpl implements _LoginEmailData {
       required this.refreshToken,
       required this.userName,
       required this.mail,
-      required this.isExisting});
+      required this.isExist});
 
   factory _$LoginEmailDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginEmailDataImplFromJson(json);
@@ -381,11 +381,11 @@ class _$LoginEmailDataImpl implements _LoginEmailData {
   @override
   final String mail;
   @override
-  final bool isExisting;
+  final bool isExist;
 
   @override
   String toString() {
-    return 'LoginEmailData(accessToken: $accessToken, refreshToken: $refreshToken, userName: $userName, mail: $mail, isExisting: $isExisting)';
+    return 'LoginEmailData(accessToken: $accessToken, refreshToken: $refreshToken, userName: $userName, mail: $mail, isExist: $isExist)';
   }
 
   @override
@@ -400,14 +400,13 @@ class _$LoginEmailDataImpl implements _LoginEmailData {
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
             (identical(other.mail, mail) || other.mail == mail) &&
-            (identical(other.isExisting, isExisting) ||
-                other.isExisting == isExisting));
+            (identical(other.isExist, isExist) || other.isExist == isExist));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, accessToken, refreshToken, userName, mail, isExisting);
+      runtimeType, accessToken, refreshToken, userName, mail, isExist);
 
   @JsonKey(ignore: true)
   @override
@@ -430,7 +429,7 @@ abstract class _LoginEmailData implements LoginEmailData {
       required final String refreshToken,
       required final String userName,
       required final String mail,
-      required final bool isExisting}) = _$LoginEmailDataImpl;
+      required final bool isExist}) = _$LoginEmailDataImpl;
 
   factory _LoginEmailData.fromJson(Map<String, dynamic> json) =
       _$LoginEmailDataImpl.fromJson;
@@ -444,7 +443,7 @@ abstract class _LoginEmailData implements LoginEmailData {
   @override
   String get mail;
   @override
-  bool get isExisting;
+  bool get isExist;
   @override
   @JsonKey(ignore: true)
   _$$LoginEmailDataImplCopyWith<_$LoginEmailDataImpl> get copyWith =>
