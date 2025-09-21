@@ -12,7 +12,7 @@ final ButtonStyle blackButtonStyle = ElevatedButton.styleFrom(
 );
 final ButtonStyle greenButtonStyle = ElevatedButton.styleFrom(
   minimumSize: const Size.fromHeight(50),
-  backgroundColor: AppColors.greenAuthScreenColor,
+  backgroundColor: AppColors.grammaPrimaryText,
   foregroundColor: Colors.white,
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(4),

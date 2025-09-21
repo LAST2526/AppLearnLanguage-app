@@ -30,7 +30,7 @@ _$LoginEmailDataImpl _$$LoginEmailDataImplFromJson(Map<String, dynamic> json) =>
       refreshToken: json['refreshToken'] as String,
       userName: json['userName'] as String,
       mail: json['mail'] as String,
-      isExisting: json['isExisting'] as bool,
+      isExist: json['isExist'] as bool,
     );
 
 Map<String, dynamic> _$$LoginEmailDataImplToJson(
@@ -40,5 +40,5 @@ Map<String, dynamic> _$$LoginEmailDataImplToJson(
       'refreshToken': instance.refreshToken,
       'userName': instance.userName,
       'mail': instance.mail,
-      'isExisting': instance.isExisting,
+      'isExist': instance.isExist,
     };

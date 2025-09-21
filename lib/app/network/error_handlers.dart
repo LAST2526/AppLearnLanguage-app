@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:last02/l10n/app_localizations.dart';
 
 import '/app/network/exceptions/api_exception.dart';
 import '/app/network/exceptions/app_exception.dart';
@@ -10,7 +11,6 @@ import '/app/network/exceptions/network_exception.dart';
 import '/app/network/exceptions/not_found_exception.dart';
 import '/app/network/exceptions/service_unavailable_exception.dart';
 import '/flavors/build_config.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Exception handleError(String error) {
   final appLocalization = AppLocalizations.of(Get.context!);

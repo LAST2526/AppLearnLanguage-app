@@ -23,7 +23,7 @@ class LoginEmailData with _$LoginEmailData {
     required String refreshToken,
     required String userName,
     required String mail,
-    required bool isExisting,
+    required bool isExist,
   }) = _LoginEmailData;
 
   factory LoginEmailData.fromJson(Map<String, dynamic> json) =>

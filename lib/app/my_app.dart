@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:last02/app/bindings/initial_binding.dart';
 import 'package:last02/app/core/values/app_colors.dart';
 import 'package:last02/app/routes/app_pages.dart';
+import 'package:last02/l10n/app_localizations.dart';
 
 import '/flavors/build_config.dart';
 import '/flavors/env_config.dart';

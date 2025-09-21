@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:last02/app/modules/home/controllers/home_controller.dart';
 
 import '/app/modules/main/controllers/main_controller.dart';
 
@@ -9,9 +10,9 @@ class MainBinding extends Bindings {
       () => MainController(),
       fenix: true,
     );
-    // Get.lazyPut<HomeController>(
-    //   () => HomeController(),
-    //   fenix: true,
-    // );
+    Get.lazyPut<HomeController>(
+      () => HomeController(),
+      fenix: true,
+    );
   }
 }

@@ -12,7 +12,7 @@ abstract class Routes {
   static const BASIC_INFO = _Paths.BASIC_INFO;
   static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
   static const PROFILE = _Paths.PROFILE;
-  static const GRAMMA = _Paths.GRAMMA;
+  static const LISTEN_PRACTICE = _Paths.LISTEN_PRACTICE;
   static const FLASH_CARD = _Paths.FLASH_CARD;
   static const TTS = _Paths.TTS;
   static const UPDATE_PROFILE = _Paths.UPDATE_PROFILE;
@@ -29,7 +29,7 @@ abstract class _Paths {
   static const BASIC_INFO = '/basic-info';
   static const CHANGE_PASSWORD = '/change-password';
   static const PROFILE = '/profile';
-  static const GRAMMA = '/gramma';
+  static const LISTEN_PRACTICE = '/listen-practice';
   static const FLASH_CARD = '/flash-card';
   static const TTS = '/tts';
   static const UPDATE_PROFILE = '/update-profile';
