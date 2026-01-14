@@ -229,6 +229,8 @@ mixin _$LessionData {
   String get audioCode => throw _privateConstructorUsedError;
   int get audioType => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get titleVi => throw _privateConstructorUsedError;
+  String get titleEn => throw _privateConstructorUsedError;
   String get fileUrl => throw _privateConstructorUsedError;
   int get sortOrder => throw _privateConstructorUsedError;
   bool get isFree => throw _privateConstructorUsedError;
@@ -254,6 +256,8 @@ abstract class $LessionDataCopyWith<$Res> {
       String audioCode,
       int audioType,
       String title,
+      String titleVi,
+      String titleEn,
       String fileUrl,
       int sortOrder,
       bool isFree,
@@ -280,6 +284,8 @@ class _$LessionDataCopyWithImpl<$Res, $Val extends LessionData>
     Object? audioCode = null,
     Object? audioType = null,
     Object? title = null,
+    Object? titleVi = null,
+    Object? titleEn = null,
     Object? fileUrl = null,
     Object? sortOrder = null,
     Object? isFree = null,
@@ -304,6 +310,14 @@ class _$LessionDataCopyWithImpl<$Res, $Val extends LessionData>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      titleVi: null == titleVi
+          ? _value.titleVi
+          : titleVi // ignore: cast_nullable_to_non_nullable
+              as String,
+      titleEn: null == titleEn
+          ? _value.titleEn
+          : titleEn // ignore: cast_nullable_to_non_nullable
               as String,
       fileUrl: null == fileUrl
           ? _value.fileUrl
@@ -350,6 +364,8 @@ abstract class _$$LessionDataImplCopyWith<$Res>
       String audioCode,
       int audioType,
       String title,
+      String titleVi,
+      String titleEn,
       String fileUrl,
       int sortOrder,
       bool isFree,
@@ -374,6 +390,8 @@ class __$$LessionDataImplCopyWithImpl<$Res>
     Object? audioCode = null,
     Object? audioType = null,
     Object? title = null,
+    Object? titleVi = null,
+    Object? titleEn = null,
     Object? fileUrl = null,
     Object? sortOrder = null,
     Object? isFree = null,
@@ -398,6 +416,14 @@ class __$$LessionDataImplCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      titleVi: null == titleVi
+          ? _value.titleVi
+          : titleVi // ignore: cast_nullable_to_non_nullable
+              as String,
+      titleEn: null == titleEn
+          ? _value.titleEn
+          : titleEn // ignore: cast_nullable_to_non_nullable
               as String,
       fileUrl: null == fileUrl
           ? _value.fileUrl
@@ -439,6 +465,8 @@ class _$LessionDataImpl implements _LessionData {
       required this.audioCode,
       required this.audioType,
       required this.title,
+      required this.titleVi,
+      required this.titleEn,
       required this.fileUrl,
       required this.sortOrder,
       required this.isFree,
@@ -459,6 +487,10 @@ class _$LessionDataImpl implements _LessionData {
   @override
   final String title;
   @override
+  final String titleVi;
+  @override
+  final String titleEn;
+  @override
   final String fileUrl;
   @override
   final int sortOrder;
@@ -475,7 +507,7 @@ class _$LessionDataImpl implements _LessionData {
 
   @override
   String toString() {
-    return 'LessionData(id: $id, audioCode: $audioCode, audioType: $audioType, title: $title, fileUrl: $fileUrl, sortOrder: $sortOrder, isFree: $isFree, script: $script, scriptEn: $scriptEn, scriptVi: $scriptVi, courseId: $courseId)';
+    return 'LessionData(id: $id, audioCode: $audioCode, audioType: $audioType, title: $title, titleVi: $titleVi, titleEn: $titleEn, fileUrl: $fileUrl, sortOrder: $sortOrder, isFree: $isFree, script: $script, scriptEn: $scriptEn, scriptVi: $scriptVi, courseId: $courseId)';
   }
 
   @override
@@ -489,6 +521,8 @@ class _$LessionDataImpl implements _LessionData {
             (identical(other.audioType, audioType) ||
                 other.audioType == audioType) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.titleVi, titleVi) || other.titleVi == titleVi) &&
+            (identical(other.titleEn, titleEn) || other.titleEn == titleEn) &&
             (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
             (identical(other.sortOrder, sortOrder) ||
                 other.sortOrder == sortOrder) &&
@@ -504,8 +538,21 @@ class _$LessionDataImpl implements _LessionData {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, audioCode, audioType, title,
-      fileUrl, sortOrder, isFree, script, scriptEn, scriptVi, courseId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      audioCode,
+      audioType,
+      title,
+      titleVi,
+      titleEn,
+      fileUrl,
+      sortOrder,
+      isFree,
+      script,
+      scriptEn,
+      scriptVi,
+      courseId);
 
   @JsonKey(ignore: true)
   @override
@@ -527,6 +574,8 @@ abstract class _LessionData implements LessionData {
       required final String audioCode,
       required final int audioType,
       required final String title,
+      required final String titleVi,
+      required final String titleEn,
       required final String fileUrl,
       required final int sortOrder,
       required final bool isFree,
@@ -546,6 +595,10 @@ abstract class _LessionData implements LessionData {
   int get audioType;
   @override
   String get title;
+  @override
+  String get titleVi;
+  @override
+  String get titleEn;
   @override
   String get fileUrl;
   @override

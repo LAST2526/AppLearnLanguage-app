@@ -318,7 +318,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get show_script => 'Hiển thị phụ đề';
 
   @override
-  String get example => 'Ví dụ';
+  String get example => 'Ngữ pháp';
 
   @override
   String get audio => 'Hội thoại';

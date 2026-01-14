@@ -9,13 +9,10 @@ import 'package:last02/app/modules/auth/widgets/custom_result_dialog.dart';
 
 class ForgotPasswordController extends BaseController {
   final email = TextEditingController();
-  final birthdate = Rxn<DateTime>();
 
   final FocusNode emailFocus = FocusNode();
-  final FocusNode birthDateFocus = FocusNode();
 
   final emailError = ''.obs;
-  final birthDateError = ''.obs;
   late final AuthRepository authRepository;
   late final LoginController loginController;
   @override
@@ -25,16 +22,12 @@ class ForgotPasswordController extends BaseController {
     loginController = Get.find<LoginController>();
   }
 
-  Future<void> sendResetRequest(String email, DateTime dob) async {
+  Future<void> sendResetRequest(String email) async {
     validateEmail();
-    String formattedDob = Helpers.formatSendDate(dob);
     if (emailError.value.isEmpty) {
       await callDataService(
         authRepository.forgotPassword(
-          ForgotPasswordRequest(
-            email: email,
-            dob: formattedDob,
-          ),
+          ForgotPasswordRequest(email: email),
         ),
         onSuccess: (response) {
           Get.dialog(
@@ -63,7 +56,6 @@ class ForgotPasswordController extends BaseController {
   @override
   void onClose() {
     email.value = TextEditingValue.empty;
-    birthdate.value = null;
     super.onClose();
   }
 }

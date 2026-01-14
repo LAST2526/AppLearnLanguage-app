@@ -132,13 +132,17 @@ class BackCardContainer extends StatelessWidget {
                     padding: EdgeInsets.only(
                         bottom: getVerticalSize(heightMedia * 0.02)),
                     child: GestureDetector(
-                      onTap: () => controller.speakAudio(sentence),
+                      onTap: () {
+                        if (controller.isJapanese(sentence)) {
+                          controller.speakAudio(sentence);
+                        }
+                      },
                       child: Obx(() => SpeakerRow(
                             controller: controller,
                             text: sentence,
                             isSpeaking:
                                 controller.currentlySpeaking.value == sentence,
-                            iconSize: widthMedia * 0.06,
+                            iconSize: getSize(24),
                             spacing: widthMedia * 0.02,
                             textStyle: TextStyle(
                               fontSize: getFontSize(widthMedia * 0.045),

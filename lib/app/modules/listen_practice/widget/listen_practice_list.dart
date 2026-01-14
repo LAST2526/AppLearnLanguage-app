@@ -11,6 +11,7 @@ class ListenPracticeList extends StatelessWidget {
   final String playIconPath;
   final ScrollController? scrollController;
   final bool Function(LessionData item)? isItemUnlocked;
+  final String Function(LessionData item)? getTitleByLanguageCode;
 
   const ListenPracticeList({
     super.key,
@@ -20,6 +21,7 @@ class ListenPracticeList extends StatelessWidget {
     required this.playIconPath,
     this.scrollController,
     this.isItemUnlocked,
+    this.getTitleByLanguageCode,
   });
 
   @override
@@ -31,7 +33,7 @@ class ListenPracticeList extends StatelessWidget {
       itemBuilder: (context, index) {
         final item = dataList[index];
         final locked = !(isItemUnlocked?.call(item) ?? item.isFree);
-        final sentence = item.title;
+        final sentence = getTitleByLanguageCode?.call(item) ?? item.title;
 
         return InkWell(
           onTap: locked

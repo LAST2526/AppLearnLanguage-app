@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:last02/app/modules/auth/widgets/language_dropdown.dart';
+import 'package:last02/app/modules/home/controllers/home_controller.dart';
 import 'package:last02/app/modules/profile/widgets/profile_arrow_btn_action.dart';
 import 'package:last02/app/modules/profile/widgets/profile_avatar.dart';
 import 'package:last02/app/modules/profile/widgets/profile_group_row.dart';
@@ -29,7 +30,12 @@ class ProfileView extends BaseView<ProfileController> {
       centerTitle: true,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back, color: AppColors.appBarIconColor),
-        onPressed: () => Get.back(),
+        onPressed: () {
+          if (Get.isRegistered<HomeController>()) {
+            Get.find<HomeController>().getSavedLocale();
+          }
+          Get.back();
+        },
       ),
       actions: [
         Padding(

@@ -43,7 +43,7 @@ class ForgotPasswordView extends BaseView<ForgotPasswordController> {
                         appLocalization.resetPassword,
                         style: TextStyle(
                           fontSize: getFontSize(22),
-                          color: AppColors.greenAuthScreenColor,
+                          color: AppColors.grammaPrimaryText,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -63,20 +63,7 @@ class ForgotPasswordView extends BaseView<ForgotPasswordController> {
                       required: true,
                       errorText: controller.emailError,
                     ),
-                    const SizedBox(height: 16),
-                    Obx(
-                      () => DatePickerField(
-                        label: appLocalization.birthdateLabel,
-                        hintText: 'yyyy/mm/dd',
-                        selectedDate: controller.birthdate.value,
-                        required: true,
-                        onDateSelected: (date) {
-                          controller.birthdate.value = date;
-                        },
-                        fieldName: appLocalization.birthdateLabel,
-                      ),
-                    ),
-                    SizedBox(height: getVerticalSize(48)),
+                    SizedBox(height: getVerticalSize(32)),
                     Obx(
                       () => controller.errorMessage.isNotEmpty
                           ? Padding(
@@ -90,8 +77,8 @@ class ForgotPasswordView extends BaseView<ForgotPasswordController> {
                           : const SizedBox.shrink(),
                     ),
                     BtnWidget(
-                      onPressed: () => controller.sendResetRequest(
-                          controller.email.text, controller.birthdate.value!),
+                      onPressed: () =>
+                          controller.sendResetRequest(controller.email.text),
                       label: appLocalization.sendEmail,
                       style: greenButtonStyle,
                     ),
