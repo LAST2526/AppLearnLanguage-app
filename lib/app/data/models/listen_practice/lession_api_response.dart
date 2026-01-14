@@ -23,6 +23,8 @@ class LessionData with _$LessionData {
     required String audioCode,
     required int audioType,
     required String title,
+    required String titleVi,
+    required String titleEn,
     required String fileUrl,
     required int sortOrder,
     required bool isFree,

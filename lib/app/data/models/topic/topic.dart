@@ -9,6 +9,8 @@ class Topic with _$Topic {
     required int id,
     required String topicCode,
     required String title,
+    required String titleVi,
+    required String titleEn,
     required String description,
     required bool isFree,
     required String hexColorCode,

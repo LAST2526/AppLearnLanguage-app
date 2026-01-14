@@ -35,6 +35,7 @@ abstract class AppColors {
   static const Color textColorCyan = Color(0xFF38686A);
   static const Color textColorWhite = Color(0xFFFFFFFF);
   static Color searchFieldTextColor = const Color(0xFF323232).withOpacity(0.5);
+  static const Color lightGreyBackground = Color(0xFFD9D9D9);
 
   static const Color iconColorDefault = Colors.grey;
 

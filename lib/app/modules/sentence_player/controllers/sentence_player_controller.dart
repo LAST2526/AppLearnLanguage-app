@@ -1,4 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:last02/app/core/base/base_controller.dart';
@@ -8,8 +7,6 @@ import 'package:last02/app/modules/home/controllers/home_controller.dart';
 
 class SentencePlayerController extends BaseController {
   final player = AudioPlayer();
-  final baseUrl =
-      dotenv.env['BASE_URL_LOCAL'] ?? dotenv.env['BASE_URL_REMOTE'] ?? '';
   final isPlaying = false.obs;
   final isAutoNext = false.obs;
   final showScript = true.obs;

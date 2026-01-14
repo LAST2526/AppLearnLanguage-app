@@ -718,7 +718,7 @@ abstract class AppLocalizations {
   /// No description provided for @example.
   ///
   /// In en, this message translates to:
-  /// **'Example'**
+  /// **'Grammar'**
   String get example;
 
   /// No description provided for @audio.

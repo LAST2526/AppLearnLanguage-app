@@ -15,6 +15,7 @@ import 'package:last02/app/data/local/preference/preference_manager_impl.dart';
 import 'package:last02/app/my_app.dart';
 import 'package:last02/app/routes/app_pages.dart';
 import 'package:last02/app/routes/auth_service.dart';
+import 'package:last02/app/utils/fcm_helper.dart';
 import 'package:last02/flavors/build_config.dart';
 import 'package:last02/flavors/env_config.dart';
 import 'package:last02/flavors/environment.dart';
@@ -65,59 +66,42 @@ Future<void> _initLocalNotification() async {
   );
 }
 
-Future<void> getFcmToken() async {
-  final messaging = FirebaseMessaging.instance;
-
-  final settings = await messaging.requestPermission();
-  if (settings.authorizationStatus != AuthorizationStatus.authorized) {
-    print('Người dùng từ chối quyền nhận thông báo');
-    return;
-  }
-
-  // (iOS) Đợi APNS token sẵn sàng
-  if (Platform.isIOS) {
-    String? apnsToken;
-    int retry = 0;
-    while (apnsToken == null && retry < 5) {
-      apnsToken = await messaging.getAPNSToken();
-      if (apnsToken == null) {
-        await Future.delayed(Duration(seconds: 1));
-        retry++;
-      }
-    }
-
-    if (apnsToken == null) {
-      return;
-    }
-  }
-
-  String? fcmToken = await messaging.getToken();
-  print("FCM Token: $fcmToken");
-  if (fcmToken != null) {
-    final preferenceManager = Get.find<PreferenceManager>();
-    await preferenceManager.setString('fcmToken', fcmToken);
-  }
+@Deprecated('Use FcmHelper.initializeFcmToken() instead')
+Future<void> getFcmToken({int maxRetries = 3}) async {
+  await FcmHelper.initializeFcmToken(maxRetries: maxRetries);
 }
 
 void main() async {
   await dotenv.load(fileName: ".env");
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  Get.put<PreferenceManager>(PreferenceManagerImpl());
-  await getFcmToken();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
-  _initLocalNotification();
+  try {
+    await Firebase.initializeApp();
+    Get.put<PreferenceManager>(PreferenceManagerImpl());
+
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
+    _initLocalNotification();
+
+    Future.delayed(Duration(seconds: 2), () {
+      FcmHelper.initializeFcmToken(maxRetries: 3);
+    });
+  } catch (e) {
+    print('Lỗi khởi tạo Firebase: $e');
+    if (!Get.isRegistered<PreferenceManager>()) {
+      Get.put<PreferenceManager>(PreferenceManagerImpl());
+    }
+  }
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  final baseUrl =
-      dotenv.env['BASE_URL_LOCAL'] ?? dotenv.env['BASE_URL_REMOTE'] ?? '';
   EnvConfig devConfig = EnvConfig(
     appName: "Last02",
-    baseUrl: baseUrl,
+    // baseUrl: "http://192.168.1.11:5149",
+    // baseUrl: "http://10.0.2.2:5149",
+    baseUrl: "http://api-last02.runasp.net",
     shouldCollectCrashLog: true,
   );
 

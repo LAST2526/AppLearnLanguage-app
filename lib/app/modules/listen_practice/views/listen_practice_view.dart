@@ -48,6 +48,11 @@ class ListenPracticeView extends BaseView<ListenPracticeController> {
                       ? ImageAssets.grammarPlayIcon
                       : ImageAssets.kaiwaPlayIcon,
                   scrollController: controller.scrollController,
+                  getTitleByLanguageCode: (item) =>
+                      controller.getTitleByLanguageCode(
+                    item,
+                    Get.locale?.languageCode ?? 'vi',
+                  ),
                   // isItemUnlocked: controller.isItemUnlocked,
                   onItemTap: (index) {
                     final item = controller.originalPlaylist[index];

@@ -117,4 +117,15 @@ class ListenPracticeController extends BaseController {
   void loadMore() {
     getLessionListByCourseId(courseId.value, isLoadMore: true);
   }
+
+  String getTitleByLanguageCode(LessionData item, String languageCode) {
+    switch (languageCode.toLowerCase()) {
+      case 'vi':
+        return item.titleVi.isNotEmpty ? item.titleVi : item.title;
+      case 'en':
+        return item.titleEn.isNotEmpty ? item.titleEn : item.title;
+      default:
+        return item.title;
+    }
+  }
 }

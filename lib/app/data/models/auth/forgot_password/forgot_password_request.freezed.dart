@@ -22,7 +22,6 @@ ForgotPasswordRequest _$ForgotPasswordRequestFromJson(
 /// @nodoc
 mixin _$ForgotPasswordRequest {
   String get email => throw _privateConstructorUsedError;
-  String get dob => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +35,7 @@ abstract class $ForgotPasswordRequestCopyWith<$Res> {
           $Res Function(ForgotPasswordRequest) then) =
       _$ForgotPasswordRequestCopyWithImpl<$Res, ForgotPasswordRequest>;
   @useResult
-  $Res call({String email, String dob});
+  $Res call({String email});
 }
 
 /// @nodoc
@@ -54,16 +53,11 @@ class _$ForgotPasswordRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? email = null,
-    Object? dob = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      dob: null == dob
-          ? _value.dob
-          : dob // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -78,7 +72,7 @@ abstract class _$$ForgotPasswordRequestImplCopyWith<$Res>
       __$$ForgotPasswordRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String dob});
+  $Res call({String email});
 }
 
 /// @nodoc
@@ -94,16 +88,11 @@ class __$$ForgotPasswordRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = null,
-    Object? dob = null,
   }) {
     return _then(_$ForgotPasswordRequestImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      dob: null == dob
-          ? _value.dob
-          : dob // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -112,19 +101,17 @@ class __$$ForgotPasswordRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ForgotPasswordRequestImpl implements _ForgotPasswordRequest {
-  const _$ForgotPasswordRequestImpl({required this.email, required this.dob});
+  const _$ForgotPasswordRequestImpl({required this.email});
 
   factory _$ForgotPasswordRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ForgotPasswordRequestImplFromJson(json);
 
   @override
   final String email;
-  @override
-  final String dob;
 
   @override
   String toString() {
-    return 'ForgotPasswordRequest(email: $email, dob: $dob)';
+    return 'ForgotPasswordRequest(email: $email)';
   }
 
   @override
@@ -132,13 +119,12 @@ class _$ForgotPasswordRequestImpl implements _ForgotPasswordRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ForgotPasswordRequestImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.dob, dob) || other.dob == dob));
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, email, dob);
+  int get hashCode => Object.hash(runtimeType, email);
 
   @JsonKey(ignore: true)
   @override
@@ -156,17 +142,14 @@ class _$ForgotPasswordRequestImpl implements _ForgotPasswordRequest {
 }
 
 abstract class _ForgotPasswordRequest implements ForgotPasswordRequest {
-  const factory _ForgotPasswordRequest(
-      {required final String email,
-      required final String dob}) = _$ForgotPasswordRequestImpl;
+  const factory _ForgotPasswordRequest({required final String email}) =
+      _$ForgotPasswordRequestImpl;
 
   factory _ForgotPasswordRequest.fromJson(Map<String, dynamic> json) =
       _$ForgotPasswordRequestImpl.fromJson;
 
   @override
   String get email;
-  @override
-  String get dob;
   @override
   @JsonKey(ignore: true)
   _$$ForgotPasswordRequestImplCopyWith<_$ForgotPasswordRequestImpl>

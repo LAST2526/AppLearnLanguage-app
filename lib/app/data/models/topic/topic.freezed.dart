@@ -23,6 +23,8 @@ mixin _$Topic {
   int get id => throw _privateConstructorUsedError;
   String get topicCode => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get titleVi => throw _privateConstructorUsedError;
+  String get titleEn => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   bool get isFree => throw _privateConstructorUsedError;
   String get hexColorCode => throw _privateConstructorUsedError;
@@ -46,6 +48,8 @@ abstract class $TopicCopyWith<$Res> {
       {int id,
       String topicCode,
       String title,
+      String titleVi,
+      String titleEn,
       String description,
       bool isFree,
       String hexColorCode,
@@ -70,6 +74,8 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
     Object? id = null,
     Object? topicCode = null,
     Object? title = null,
+    Object? titleVi = null,
+    Object? titleEn = null,
     Object? description = null,
     Object? isFree = null,
     Object? hexColorCode = null,
@@ -89,6 +95,14 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      titleVi: null == titleVi
+          ? _value.titleVi
+          : titleVi // ignore: cast_nullable_to_non_nullable
+              as String,
+      titleEn: null == titleEn
+          ? _value.titleEn
+          : titleEn // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -129,6 +143,8 @@ abstract class _$$TopicImplCopyWith<$Res> implements $TopicCopyWith<$Res> {
       {int id,
       String topicCode,
       String title,
+      String titleVi,
+      String titleEn,
       String description,
       bool isFree,
       String hexColorCode,
@@ -151,6 +167,8 @@ class __$$TopicImplCopyWithImpl<$Res>
     Object? id = null,
     Object? topicCode = null,
     Object? title = null,
+    Object? titleVi = null,
+    Object? titleEn = null,
     Object? description = null,
     Object? isFree = null,
     Object? hexColorCode = null,
@@ -170,6 +188,14 @@ class __$$TopicImplCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      titleVi: null == titleVi
+          ? _value.titleVi
+          : titleVi // ignore: cast_nullable_to_non_nullable
+              as String,
+      titleEn: null == titleEn
+          ? _value.titleEn
+          : titleEn // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -206,6 +232,8 @@ class _$TopicImpl implements _Topic {
       {required this.id,
       required this.topicCode,
       required this.title,
+      required this.titleVi,
+      required this.titleEn,
       required this.description,
       required this.isFree,
       required this.hexColorCode,
@@ -223,6 +251,10 @@ class _$TopicImpl implements _Topic {
   @override
   final String title;
   @override
+  final String titleVi;
+  @override
+  final String titleEn;
+  @override
   final String description;
   @override
   final bool isFree;
@@ -239,7 +271,7 @@ class _$TopicImpl implements _Topic {
 
   @override
   String toString() {
-    return 'Topic(id: $id, topicCode: $topicCode, title: $title, description: $description, isFree: $isFree, hexColorCode: $hexColorCode, courseId: $courseId, completedFlashcardcnt: $completedFlashcardcnt, flashcardCnt: $flashcardCnt)';
+    return 'Topic(id: $id, topicCode: $topicCode, title: $title, titleVi: $titleVi, titleEn: $titleEn, description: $description, isFree: $isFree, hexColorCode: $hexColorCode, courseId: $courseId, completedFlashcardcnt: $completedFlashcardcnt, flashcardCnt: $flashcardCnt)';
   }
 
   @override
@@ -251,6 +283,8 @@ class _$TopicImpl implements _Topic {
             (identical(other.topicCode, topicCode) ||
                 other.topicCode == topicCode) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.titleVi, titleVi) || other.titleVi == titleVi) &&
+            (identical(other.titleEn, titleEn) || other.titleEn == titleEn) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.isFree, isFree) || other.isFree == isFree) &&
@@ -271,6 +305,8 @@ class _$TopicImpl implements _Topic {
       id,
       topicCode,
       title,
+      titleVi,
+      titleEn,
       description,
       isFree,
       hexColorCode,
@@ -297,6 +333,8 @@ abstract class _Topic implements Topic {
       {required final int id,
       required final String topicCode,
       required final String title,
+      required final String titleVi,
+      required final String titleEn,
       required final String description,
       required final bool isFree,
       required final String hexColorCode,
@@ -312,6 +350,10 @@ abstract class _Topic implements Topic {
   String get topicCode;
   @override
   String get title;
+  @override
+  String get titleVi;
+  @override
+  String get titleEn;
   @override
   String get description;
   @override

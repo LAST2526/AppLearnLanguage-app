@@ -123,33 +123,36 @@ class HomeView extends BaseView<HomeController> {
               SectionTitle(
                 svgAsset: ImageAssets.homeBook,
                 title: appLocalization.flashcard,
-                subContent: const Column(
+                subContent: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Row(
-                    //   children: [
-                    //     Text(appLocalization.progress,
-                    //         style: TextStyle(
-                    //             fontSize: getFontSize(12),
-                    //             color: AppColors.titleSubContentColor,
-                    //             fontWeight: FontWeight.w700)),
-                    //     SizedBox(width: getHorizontalSize(8)),
-                    //     Expanded(
-                    //       child: Obx(() => LinearProgressIndicator(
-                    //             value: controller.courseProgress.value / 100,
-                    //             backgroundColor:
-                    //                 AppColors.progressBarBackground,
-                    //             valueColor: const AlwaysStoppedAnimation<Color>(
-                    //                 AppColors.greenAuthScreenColor),
-                    //           )),
-                    //     ),
-                    //     const SizedBox(width: 8),
-                    //     Obx(() => Text(
-                    //           "${controller.courseProgress.value.toStringAsFixed(0)}%",
-                    //           style: const TextStyle(fontSize: 12),
-                    //         )),
-                    //   ],
-                    // ),
+                    Row(
+                      children: [
+                        Text(appLocalization.progress,
+                            style: TextStyle(
+                                fontSize: getFontSize(12),
+                                color: AppColors.titleSubContentColor,
+                                fontWeight: FontWeight.w700)),
+                        SizedBox(width: getHorizontalSize(8)),
+                        Expanded(
+                          child: Obx(() => LinearProgressIndicator(
+                                borderRadius: BorderRadius.circular(16),
+                                value: controller.courseProgress.value / 100,
+                                backgroundColor: AppColors.lightGreyBackground,
+                                valueColor: const AlwaysStoppedAnimation<Color>(
+                                    AppColors.greenAuthScreenColor),
+                              )),
+                        ),
+                        const SizedBox(width: 8),
+                        Obx(() => Text(
+                              "${controller.courseProgress.value.toStringAsFixed(0)}%",
+                              style: TextStyle(
+                                  fontSize: getFontSize(12),
+                                  color: AppColors.titleSubContentColor,
+                                  fontWeight: FontWeight.w700),
+                            )),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -189,7 +192,10 @@ class HomeView extends BaseView<HomeController> {
                 return HorizontalGridCardSection(
                   cards: controller.topics.map((topic) {
                     return TopicItem(
-                      title: topic.title,
+                      title: controller.getTopicTitle(
+                        topic,
+                        controller.currentLocale.value.languageCode,
+                      ),
                       color: hexColor(topic.hexColorCode),
                       locked:
                           !(topic.isFree || controller.hasRedeemedBook.value),
@@ -198,8 +204,6 @@ class HomeView extends BaseView<HomeController> {
                       onTap: () {
                         if (topic.isFree || controller.hasRedeemedBook.value) {
                           controller.goToFlashCard(topic.id);
-                        } else {
-                          // controller.showTopicUnlock();
                         }
                       },
                     );

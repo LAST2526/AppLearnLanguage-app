@@ -29,7 +29,7 @@ class HomeController extends BaseController {
   int get courseId => _courseId.value;
 
   final messageNoData = ''.obs;
-  final Rx<Locale> currentLocale = Rx<Locale>(const Locale('ja'));
+  final Rx<Locale> currentLocale = Rx<Locale>(const Locale('en'));
 
   @override
   void onInit() {
@@ -114,20 +114,29 @@ class HomeController extends BaseController {
     );
   }
 
+  String getTopicTitle(Topic topic, String lang) {
+    switch (lang) {
+      case 'vi':
+        return topic.titleVi;
+      case 'en':
+        return topic.titleEn;
+      case 'ja':
+      default:
+        return topic.title;
+    }
+  }
+
   void goToProfile() {
     Get.toNamed(Routes.PROFILE);
   }
 
   void goToFlashCard(int topicId) async {
-    final topicTitle = topics.firstWhere((e) => e.id == topicId).title;
+    final topic = topics.firstWhere((e) => e.id == topicId);
+    final topicTitle = getTopicTitle(topic, currentLocale.value.languageCode);
     await Get.toNamed(Routes.FLASH_CARD, arguments: {
       'topicId': topicId,
       'topicTitle': topicTitle,
     });
-    callDataService(_userRepository.getTopicsByCourseId(courseId),
-        onSuccess: (response) {
-          topics.value = response.data;
-        },
-        onStart: () => {});
+    await loadUserInfoAndTopics();
   }
 }

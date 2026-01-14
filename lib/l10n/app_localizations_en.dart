@@ -318,7 +318,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get show_script => 'Show subtitles';
 
   @override
-  String get example => 'Example';
+  String get example => 'Grammar';
 
   @override
   String get audio => 'Conversation';
