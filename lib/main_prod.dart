@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:last02/app/bindings/local_source_bindings.dart';
 import 'package:last02/app/core/arguments/models/notification_payload.dart';
@@ -39,23 +36,32 @@ Future<void> _initLocalNotification() async {
   await flutterLocalNotificationsPlugin.initialize(initSettings,
       //Handle khi xử lý click thông báo khi app đang mở
       onDidReceiveNotificationResponse: (NotificationResponse response) {
-    final isLogined = Get.find<AuthService>().isAuthenticated.value;
+    try {
+      if (!Get.isRegistered<AuthService>()) {
+        return;
+      }
+      final authService = Get.find<AuthService>();
+      final isLogined = authService.isAuthenticated.value;
 
-    if (!isLogined) {
-      return;
-    }
-    if (response.payload != null) {
-      final payload = NotificationPayload.fromPayloadString(response.payload!);
-      Get.toNamed(
-        Routes.LIST_NOTIFICATION,
-        arguments: {
-          'navigateToDetail': true,
-          'payload': payload,
-          'userId': payload.userId
-        },
-      );
-    } else {
-      Get.toNamed(Routes.LIST_NOTIFICATION);
+      if (!isLogined) {
+        return;
+      }
+      if (response.payload != null) {
+        final payload =
+            NotificationPayload.fromPayloadString(response.payload!);
+        Get.toNamed(
+          Routes.LIST_NOTIFICATION,
+          arguments: {
+            'navigateToDetail': true,
+            'payload': payload,
+            'userId': payload.userId
+          },
+        );
+      } else {
+        Get.toNamed(Routes.LIST_NOTIFICATION);
+      }
+    } catch (e) {
+      print('Lỗi xử lý notification response: $e');
     }
   });
 
@@ -72,8 +78,15 @@ Future<void> getFcmToken({int maxRetries = 3}) async {
 }
 
 void main() async {
-  await dotenv.load(fileName: ".env");
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // Ensure Flutter binding is initialized first
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    print('Lỗi load .env file: $e');
+  }
+
   try {
     await Firebase.initializeApp();
     Get.put<PreferenceManager>(PreferenceManagerImpl());
@@ -84,12 +97,6 @@ void main() async {
       badge: true,
       sound: true,
     );
-
-    _initLocalNotification();
-
-    Future.delayed(Duration(seconds: 2), () {
-      FcmHelper.initializeFcmToken(maxRetries: 3);
-    });
   } catch (e) {
     print('Lỗi khởi tạo Firebase: $e');
     if (!Get.isRegistered<PreferenceManager>()) {
@@ -117,6 +124,16 @@ void main() async {
 
   LocalSourceBindings().dependencies();
   await Get.putAsync(() => AuthService().init());
+
+  // Initialize local notifications after AuthService is ready
+  try {
+    _initLocalNotification();
+    Future.delayed(Duration(seconds: 2), () {
+      FcmHelper.initializeFcmToken(maxRetries: 3);
+    });
+  } catch (e) {
+    print('Lỗi khởi tạo local notifications: $e');
+  }
 
   runApp(const MyApp());
 }

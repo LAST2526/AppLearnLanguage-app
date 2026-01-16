@@ -10,6 +10,7 @@ import 'package:last02/app/data/local/preference/preference_manager.dart';
 import 'package:last02/app/data/models/auth/login/login_email_request.dart';
 import 'package:last02/app/data/models/auth/login/login_email_response.dart';
 import 'package:last02/app/data/models/auth/login/oauth_social_request.dart';
+import 'package:last02/app/data/models/course/course.dart';
 import 'package:last02/app/data/repositories/auth_repository.dart';
 // import 'package:last02/app/modules/auth/widgets/custom_result_dialog.dart';
 import 'package:last02/app/routes/app_pages.dart';
@@ -38,6 +39,8 @@ class LoginController extends BaseController {
       Get.find<PreferenceManager>(tag: (PreferenceManager).toString());
 
   late final AuthRepository authRepository;
+
+  final courseList = <Course>[].obs;
 
   RxMap<String, dynamic> userData = <String, dynamic>{}.obs;
 
@@ -92,6 +95,15 @@ class LoginController extends BaseController {
     emailError.value = Helpers.validateEmail(email.text, appLocalization,
             fieldName: appLocalization.emailError) ??
         '';
+  }
+
+  Future<void> getAllCourses() async {
+    await callDataService(
+      authRepository.getCourses(),
+      onSuccess: (response) {
+        courseList.value = response.data;
+      },
+    );
   }
 
   Future<void> loginByEmail(LoginEmailRequest request) async {
@@ -150,10 +162,12 @@ class LoginController extends BaseController {
         if (response.data.accessToken.isNotEmpty) {
           handleLoginSuccess(response);
         } else {
+          await getAllCourses();
           final arguments = BasicInfoArguments(
             email: response.data.mail,
             provider: getValueProvider(provider),
             userName: userName,
+            courses: courseList,
           );
           Get.offAllNamed(Routes.BASIC_INFO, arguments: arguments);
         }
