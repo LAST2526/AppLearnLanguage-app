@@ -108,7 +108,6 @@ class BasicInfoView extends BaseView<BasicInfoController> {
                       label: appLocalization.course,
                       hintText: '',
                       options: controller.courseList
-                          .where((course) => course.title == 'N5')
                           .map((course) => course.title)
                           .toList(),
                       value: controller.course.value,
