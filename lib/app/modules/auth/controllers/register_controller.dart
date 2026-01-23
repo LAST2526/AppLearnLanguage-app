@@ -74,6 +74,15 @@ class RegisterController extends BaseController {
         _validateConfirmPassword(confirmPassword.text) ?? '';
   }
 
+  Future<void> getAllCourses() async {
+    await callDataService(
+      authRepository.getCourses(),
+      onSuccess: (response) {
+        courseList.value = response.data;
+      },
+    );
+  }
+
   Future<void> registerByEmail({required String email}) async {
     validateEmail();
     validatePassword();
@@ -100,15 +109,6 @@ class RegisterController extends BaseController {
         }
       });
     }
-  }
-
-  Future<void> getAllCourses() async {
-    await callDataService(
-      authRepository.getCourses(),
-      onSuccess: (response) {
-        courseList.value = response.data;
-      },
-    );
   }
 
   Future<void> registerWithGoogle() async {
